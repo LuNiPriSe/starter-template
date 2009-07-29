@@ -461,164 +461,164 @@ end
   
   file 'config/locales/de.yml',
   %q{de: 
-      login: "Benutzername"
-      email: "Email"
-      edit: "Ändern"
-      update: "aktualisieren"
-      update and login: "Passwort ändern und mich einloggen"
-      password: "Passwort"
-      change password: "Passwort ändern"
-      password_confirmation: "Passwort wiederholen"
-      log in: "Einloggen"
-      register: "Registrieren"
-      remember_me: "Eingeloggt bleiben"
-      forgot password: "Passwort vergessen"
-      new password instructions: "Bitte folgen Sie den unten stehenden Anweisungen und füllen Sie das Formular aus und Ihnen wird Ihr Passwort zugeschickt."
-      reset my password: "Passwort zuschicken"
-      login count: "Anzahl der Einwahlen"
-      last request at: "Letzte Anfrage"
-      last login at: "Letzte Einwahl"
-      current login at: "Eingewählt um"
-      last login ip: "IP bei der letzten Einwahl"
-      current login ip: "IP bei der aktuellen Einwahl"
-      edit my account: "Profil ändern"
-      my profile: "Mein Profil"
-      my account: "Mein Profil"
-      logout: "Ausloggen"
-      logout sure: "Sind Sie sicher, dass Sie Sich ausloggen wollen?"
-      account registered: "Benutzer angelegt"
-      account updated: "Benutzer aktualisiert"
-      require login: "Sie müssen eingeloggt sein, um diese Seite nutzen zu können"
-      require loggout: "Sie müssen ausgeloggt sein, um diese Seite nutzen zu können"
-      login suc: "Erfolgreich eingeloggt!"
-      logout suc: "Erfolgreich ausgeloggt!"
+        login: "Benutzername"
+        email: "Email"
+        edit: "Ändern"
+        update: "aktualisieren"
+        update and login: "Passwort ändern und mich einloggen"
+        password: "Passwort"
+        change password: "Passwort ändern"
+        password_confirmation: "Passwort wiederholen"
+        log in: "Einloggen"
+        register: "Registrieren"
+        remember_me: "Eingeloggt bleiben"
+        forgot password: "Passwort vergessen"
+        new password instructions: "Bitte folgen Sie den unten stehenden Anweisungen und füllen Sie das Formular aus und Ihnen wird Ihr Passwort zugeschickt."
+        reset my password: "Passwort zuschicken"
+        login count: "Anzahl der Einwahlen"
+        last request at: "Letzte Anfrage"
+        last login at: "Letzte Einwahl"
+        current login at: "Eingewählt um"
+        last login ip: "IP bei der letzten Einwahl"
+        current login ip: "IP bei der aktuellen Einwahl"
+        edit my account: "Profil ändern"
+        my profile: "Mein Profil"
+        my account: "Mein Profil"
+        logout: "Ausloggen"
+        logout sure: "Sind Sie sicher, dass Sie Sich ausloggen wollen?"
+        account registered: "Benutzer angelegt"
+        account updated: "Benutzer aktualisiert"
+        require login: "Sie müssen eingeloggt sein, um diese Seite nutzen zu können"
+        require loggout: "Sie müssen ausgeloggt sein, um diese Seite nutzen zu können"
+        login suc: "Erfolgreich eingeloggt!"
+        logout suc: "Erfolgreich ausgeloggt!"
 
-      activerecord: 
-        attributes:
-          user:
-            login: "Benutzername"
-            password: "Passwort"
-            password_confirmation: "Passwortwiederholung"
-        errors:
-            template:
-              header:
-                one: "1 Fehler hat verhindert, dass {{model}} gespeichert werden konnte."
-                other: "{{count}} Fehler haben verhindert, dass {{model}} gespeichert werden konnte"
-              body: "Bitte überprüfen Sie die folgenden Felder:"
-            models:
-              user: 
-                attributes:
-                  login: 
-                    to_short: "ist zu kurz (minimum 3 Zeichen)"
-                  password: 
-                    too_short: "ist zu kurz (minimum 4 Zeichen)"
-                    confirmation: "stimmt nicht mit der Passwortwiederholung überein"
-                  password_confirmation:
-                    too_short: "ist zu kurz (minimum 4 Zeichen)"
-      error_messages: 
-        accepted: "muss akzeptiert werden"
-        blank: "muss ausgefüllt werden"
-        confirmation: "stimmt nicht mit der Bestätigung überein"
-        empty: "muss ausgefüllt werden"
-        equal_to: "muss genau {{count}} sein"
-        even: "muss gerade sein"
-        exclusion: "ist nicht verfügbar"
-        greater_than: "muss größer als {{count}} sein"
-        greater_than_or_equal_to: "muss größer oder gleich {{count}} sein"
-        inclusion: "ist kein gültiger Wert"
-        invalid: "ist nicht gültig"
-        less_than: "muss kleiner als {{count}} sein"
-        less_than_or_equal_to: "muss kleiner oder gleich {{count}} sein"
-        not_a_number: "ist keine Zahl"
-        odd: "muss ungerade sein"
-        taken: "ist bereits vergeben"
-        too_long: "ist zu lang (nicht mehr als {{count}} Zeichen)"
-        too_short: "ist zu kurz (nicht weniger als {{count}} Zeichen)"
-        wrong_length: "hat die falsche Länge (muss genau {{count}} Zeichen haben)"
-    date: 
-      formats: 
-        default: "%d.%m.%Y"
-        long: "%e. %B %Y"
-        only_day: "%e"
-        short: "%e. %b"
-    datetime: 
-      distance_in_words: 
-        about_x_hours: 
-          one: "etwa 1 Stunde"
-          other: "{{count}} Stunden"
-        about_x_months: 
-          one: "etwa 1 Monat"
-          other: "{{count}} Monate"
-        about_x_years: 
-          one: "etwa 1 Jahr"
-          other: "{{count}} Jahre"
-        half_a_minute: "eine halbe Minute"
-        less_than_x_minutes: 
-          one: "eine Minute"
-          other: "{{count}} Minuten"
-          zero: "weniger als 1 Minute"
-        less_than_x_seconds: 
-          one: "1 Sekunde"
-          other: "{{count}} Sekunden"
-          zero: "weniger als 1 Sekunde"
-        over_x_years: 
-          one: "mehr als 1 Jahr"
-          other: "{{count}} Jahre"
-        x_days: 
-          one: "1 Tag"
-          other: "{{count}} Tage"
-        x_minutes: 
-          one: "1 Minute"
-          other: "{{count}} Minuten"
-        x_months: 
-          one: "1 Monat"
-          other: "{{count}} Monate"
-        x_seconds: 
-          one: "1 Sekunde"
-          other: "{{count}} Sekunden"
-    number: 
-      currency: 
-        format: 
-          format: "%n%u"
-          precision: 2
-          unit: €
-      format: 
-        delimiter: "."
-        precision: 2
-        separator: ","
-    time: 
-      formats: 
-        am: am
-        datetime: 
+        activerecord: 
+          attributes:
+            user:
+              login: "Benutzername"
+              password: "Passwort"
+              password_confirmation: "Passwortwiederholung"
+          errors:
+              template:
+                header:
+                  one: "1 Fehler hat verhindert, dass {{model}} gespeichert werden konnte."
+                  other: "{{count}} Fehler haben verhindert, dass {{model}} gespeichert werden konnte"
+                body: "Bitte überprüfen Sie die folgenden Felder:"
+              models:
+                user: 
+                  attributes:
+                    login: 
+                      to_short: "ist zu kurz (minimum 3 Zeichen)"
+                    password: 
+                      too_short: "ist zu kurz (minimum 4 Zeichen)"
+                      confirmation: "stimmt nicht mit der Passwortwiederholung überein"
+                    password_confirmation:
+                      too_short: "ist zu kurz (minimum 4 Zeichen)"
+          error_messages: 
+            accepted: "muss akzeptiert werden"
+            blank: "muss ausgefüllt werden"
+            confirmation: "stimmt nicht mit der Bestätigung überein"
+            empty: "muss ausgefüllt werden"
+            equal_to: "muss genau {{count}} sein"
+            even: "muss gerade sein"
+            exclusion: "ist nicht verfügbar"
+            greater_than: "muss größer als {{count}} sein"
+            greater_than_or_equal_to: "muss größer oder gleich {{count}} sein"
+            inclusion: "ist kein gültiger Wert"
+            invalid: "ist nicht gültig"
+            less_than: "muss kleiner als {{count}} sein"
+            less_than_or_equal_to: "muss kleiner oder gleich {{count}} sein"
+            not_a_number: "ist keine Zahl"
+            odd: "muss ungerade sein"
+            taken: "ist bereits vergeben"
+            too_long: "ist zu lang (nicht mehr als {{count}} Zeichen)"
+            too_short: "ist zu kurz (nicht weniger als {{count}} Zeichen)"
+            wrong_length: "hat die falsche Länge (muss genau {{count}} Zeichen haben)"
+        date: 
           formats: 
-            default: "%Y-%m-%dT%H:%M:%S%Z"
-        default: "%A, %e. %B %Y, %H:%M Uhr"
-        long: "%A, %e. %B %Y, %H:%M Uhr"
-        only_second: "%S"
-        pm: pm
-        short: "%e. %B, %H:%M Uhr"
-        time: "%H:%M"
-    authlogic:
-        error_messages:
-            login_blank: "darf nicht leer sein"
-            login_not_found: "ist ungültig"
-            login_invalid: darf nur aus Buchstaben, Zahlen, Leerzeichen undd .-_@ bestehen.
-            consecutive_failed_logins_limit_exceeded: wurde sicherheitshalber deaktiviert.
-            email_invalid: sollte die Form einer Email-Adresse haben.
-            password_blank: darf nicht leer sein
-            password_invalid: ist ungültig
-            not_active: Ihr Account ist noch nicht aktiviert worden.
-            not_confirmed: Ihr Account ist bisher noch nicht bestätigt worden.
-            not_approved: Ihr Account wurde noch nicht anerkannt.
-            no_authentication_details: Sie müssen einen Benutzernamen und ein Passwort eingeben!
-        models:
-            user_session: "UserSession" 
-        attributes:
-            user_session: 
-               login: "Login"
-               email: "Email"
-               password: "Passwort"
-               remember_me: "Eingeloggt bleiben"
+            default: "%d.%m.%Y"
+            long: "%e. %B %Y"
+            only_day: "%e"
+            short: "%e. %b"
+        datetime: 
+          distance_in_words: 
+            about_x_hours: 
+              one: "etwa 1 Stunde"
+              other: "{{count}} Stunden"
+            about_x_months: 
+              one: "etwa 1 Monat"
+              other: "{{count}} Monate"
+            about_x_years: 
+              one: "etwa 1 Jahr"
+              other: "{{count}} Jahre"
+            half_a_minute: "eine halbe Minute"
+            less_than_x_minutes: 
+              one: "eine Minute"
+              other: "{{count}} Minuten"
+              zero: "weniger als 1 Minute"
+            less_than_x_seconds: 
+              one: "1 Sekunde"
+              other: "{{count}} Sekunden"
+              zero: "weniger als 1 Sekunde"
+            over_x_years: 
+              one: "mehr als 1 Jahr"
+              other: "{{count}} Jahre"
+            x_days: 
+              one: "1 Tag"
+              other: "{{count}} Tage"
+            x_minutes: 
+              one: "1 Minute"
+              other: "{{count}} Minuten"
+            x_months: 
+              one: "1 Monat"
+              other: "{{count}} Monate"
+            x_seconds: 
+              one: "1 Sekunde"
+              other: "{{count}} Sekunden"
+        number: 
+          currency: 
+            format: 
+              format: "%n%u"
+              precision: 2
+              unit: €
+          format: 
+            delimiter: "."
+            precision: 2
+            separator: ","
+        time: 
+          formats: 
+            am: am
+            datetime: 
+              formats: 
+                default: "%Y-%m-%dT%H:%M:%S%Z"
+            default: "%A, %e. %B %Y, %H:%M Uhr"
+            long: "%A, %e. %B %Y, %H:%M Uhr"
+            only_second: "%S"
+            pm: pm
+            short: "%e. %B, %H:%M Uhr"
+            time: "%H:%M"
+        authlogic:
+            error_messages:
+                login_blank: "darf nicht leer sein"
+                login_not_found: "ist ungültig"
+                login_invalid: darf nur aus Buchstaben, Zahlen, Leerzeichen undd .-_@ bestehen.
+                consecutive_failed_logins_limit_exceeded: wurde sicherheitshalber deaktiviert.
+                email_invalid: sollte die Form einer Email-Adresse haben.
+                password_blank: darf nicht leer sein
+                password_invalid: ist ungültig
+                not_active: Ihr Account ist noch nicht aktiviert worden.
+                not_confirmed: Ihr Account ist bisher noch nicht bestätigt worden.
+                not_approved: Ihr Account wurde noch nicht anerkannt.
+                no_authentication_details: Sie müssen einen Benutzernamen und ein Passwort eingeben!
+            models:
+                user_session: "UserSession" 
+            attributes:
+                user_session: 
+                   login: "Login"
+                   email: "Email"
+                   password: "Passwort"
+                   remember_me: "Eingeloggt bleiben"
   }
   
    generate("helper", "password_resets")
