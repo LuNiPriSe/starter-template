@@ -54,6 +54,7 @@ end
   gem 'mysql', :install_options => '--with-mysql-config=#{mysql_path}', :lib => 'mysql'
   gem 'authlogic', :lib => false
  # gem 'ruby-openid', :lib => 'openid'
+  gem 'json', :lib => false
   gem 'hpricot', :lib => false
   gem 'RedCloth', :lib => 'redcloth'
   
