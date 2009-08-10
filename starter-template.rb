@@ -34,6 +34,8 @@ plugin 'asset_packager', :git => 'git://github.com/sbecker/asset_packager.git', 
 plugin 'textile-editor-helper', :git => 'git://github.com/felttippin/textile-editor-helper.git', :submodule => true
 plugin 'will_paginate', :git => 'git://github.com/mislav/will_paginate.git'
 plugin 'http_accept_language', :git => '	git://github.com/iain/http_accept_language.git'
+plugin 'pretty_flash', :git => '	git://github.com/rpheath/pretty_flash.git'
+
 
 
 # Clone the Authlogic-starter pack (makes a fodler with all the logic)
@@ -361,6 +363,7 @@ end
       <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
       <title><%= controller.controller_name %>: <%= controller.action_name %></title>
       <%= stylesheet_link_tag 'scaffold' %>
+      <%= stylesheet_link_tag('flash') %>
       <%= javascript_include_tag :defaults %>
     </head>
     <body>
@@ -381,7 +384,7 @@ end
       <%= link_to t("logout"), user_session_path, :method => :delete, :confirm => t("logout sure") %>
     <% end %>
 
-    <p style="color: green"><%= flash[:notice] %></p>
+    <p><%= display_flash_messages %></p>
 
     <%= yield  %>
 
@@ -542,6 +545,13 @@ end
             long: "%e. %B %Y"
             only_day: "%e"
             short: "%e. %b"
+          day_names: [Sonntag, Monatg, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag]
+          abbr_day_names: [So, Mo, Di, Mi, Dp, Fr, Sa]
+
+          # Don't forget the nil at the beginning; there's no such thing as a 0th month
+          month_names: [~, Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember]
+          abbr_month_names: [~, Jan, Feb, Mrz, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez]
+          order: [ :day, :month, :year ]
         datetime: 
           distance_in_words: 
             about_x_hours: 
@@ -646,6 +656,9 @@ end
   
 # The config YAML file for the asset packager
   rake("asset:packager:create_yml")  
+  
+# copies the pretty flash CSS files  
+  rake pretty_flash:install
   
 # Commit all work so far to the repository
   git :add => '.'
