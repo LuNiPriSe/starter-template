@@ -8,6 +8,7 @@ First try to create a BORT like template but with the following changes:
 - installation of textile-editor-helper
 - I18n of the Authlogic views
 - german language file
+- optional JRails with JQuery
 
 also installed:
 -	Hpricot
@@ -21,3 +22,5 @@ the template will:
 - generate the session tables
 - generate the textile helper methods
 - generate the asset packager YAML file
+
+IMPORTANT: before creating the application you have to set up your development database.

@@ -7,6 +7,8 @@
   # run "rm -f public/javascripts/*"
   run 'cp config/database.yml config/database.yml.example'
   
+
+  
 # Set up git repository
  git :init
 
@@ -36,7 +38,11 @@ plugin 'will_paginate', :git => 'git://github.com/mislav/will_paginate.git'
 plugin 'http_accept_language', :git => '	git://github.com/iain/http_accept_language.git'
 plugin 'pretty_flash', :git => '	git://github.com/rpheath/pretty_flash.git'
 
-
+#Install JRails
+if yes?("Do you want to use JQuery with JRails? (yes/no)")
+  run "rm -f public/javascripts/*"
+  plugin 'JRails', :git => 'git://github.com/aaronchi/jrails.git'
+end
 
 # Clone the Authlogic-starter pack (makes a fodler with all the logic)
 # git :clone => "git://github.com/LuNiPriSe/auth_logic-starter.git", :submodule => true
@@ -633,7 +639,6 @@ end
   }
   
    generate("helper", "password_resets")
-   generate("helper", "user_session")
    generate("helper", "user_sessions")
    generate("helper", "users")
 
@@ -658,7 +663,7 @@ end
   rake("asset:packager:create_yml")  
   
 # copies the pretty flash CSS files  
-  rake pretty_flash:install
+  rake("pretty_flash:install")
   
 # Commit all work so far to the repository
   git :add => '.'
