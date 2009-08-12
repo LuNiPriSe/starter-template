@@ -245,10 +245,10 @@ end
 
   <% form_for @user, :url => password_reset_path, :method => :put do |f| %>
     <%= f.error_messages %>
-    <%= f.label t(:password) %><br />
+    <%= f.label(:password, t(:password)) %><br />
     <%= f.password_field :password %><br />
     <br />
-    <%= f.label t(:password_confirmation) %><br />
+    <%= f.label(:password_confirmation, t(:password_confirmation)) %><br />
     <%= f.password_field :password_confirmation %><br />
     <br />
     <%= f.submit t("update and login") %>
@@ -274,13 +274,13 @@ end
 
     <% form_for @user_session, :url => user_session_path do |f| %>
       <%= f.error_messages %>
-      <%= f.label t(:login) %><br />
+      <%= f.label(:login, t(:login)) %><br />
       <%= f.text_field :login %><br />
       <br />
-      <%= f.label t(:password) %><br />
+      <%= f.label(:password, t(:password)) %><br />
       <%= f.password_field :password %><br />
       <br />
-      <%= f.check_box :remember_me %><%= f.label t(:remember_me) %><br />
+      <%= f.check_box :remember_me %><%= f.label(:remember_me, (:remember_me)) %><br />
       <br />
       <%= f.submit t("log in") %>
     <% end %>
