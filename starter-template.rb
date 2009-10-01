@@ -280,7 +280,7 @@ end
       <%= f.label(:password, t(:password)) %><br />
       <%= f.password_field :password %><br />
       <br />
-      <%= f.check_box :remember_me %><%= f.label(:remember_me, (:remember_me)) %><br />
+      <%= f.check_box t(:remember_me) %><%= f.label(:remember_me, (:remember_me)) %><br />
       <br />
       <%= f.submit t("log in") %>
     <% end %>
