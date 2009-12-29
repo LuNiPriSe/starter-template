@@ -55,11 +55,13 @@ if yes?("Do you want to use RSpec for testing? (yes/no)")
 end
 
 # Install gems  
-  mysql_path = '/usr/local/mysql/bin/mysql_config'
   if no?("Do you want to use the default mysql config path? (default= /usr/local/mysql/bin/mysql_config) (yes/no)")
     mysql_path = ask("What is your mysql config path? (default= /usr/local/mysql/bin/mysql_config)")
+    mysql_path = '--with-mysql-config=#{mysql_path}'
+    gem 'mysql', :install_options => mysql_path, :lib => 'mysql'
+  else
+    gem 'mysql', :install_options => '--with-mysql-config=/usr/local/mysql/bin/mysql_config', :lib => 'mysql'
   end
-  gem 'mysql', :install_options => '--with-mysql-config=#{mysql_path}', :lib => 'mysql'
   gem 'authlogic', :lib => false
  # gem 'ruby-openid', :lib => 'openid'
   gem 'json', :lib => false
