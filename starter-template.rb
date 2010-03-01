@@ -7,11 +7,7 @@
   # run "rm -f public/javascripts/*"
   run 'cp config/database.yml config/database.yml.example'
   
-
   
-# Set up git repository
- git :init
-
 # Set up .gitignore files
   run %{find . -type d -empty | xargs -I xxx touch xxx/.gitignore}
     file '.gitignore', <<-END
@@ -28,6 +24,11 @@
     coverage/*
     END
 
+  # Set up git repository
+   git :init
+   git :add => "."
+   git :commit => "-a -m 'Initial commit'"
+
 # Install the basic plugins  
 plugin 'exception_notifier', :git => 'git://github.com/rails/exception_notification.git', :submodule => true
 plugin 'asset_packager', :git => 'git://github.com/sbecker/asset_packager.git', :submodule => true
@@ -35,30 +36,94 @@ plugin 'asset_packager', :git => 'git://github.com/sbecker/asset_packager.git', 
 #plugin 'authlogic', :git => 'git://github.com/binarylogic/authlogic.git', :submodule => true
 plugin 'textile-editor-helper', :git => 'git://github.com/felttippin/textile-editor-helper.git', :submodule => true
 plugin 'will_paginate', :git => 'git://github.com/mislav/will_paginate.git'
-plugin 'http_accept_language', :git => '	git://github.com/iain/http_accept_language.git'
-plugin 'pretty_flash', :git => '	git://github.com/rpheath/pretty_flash.git'
+plugin 'http_accept_language', :git => 'git://github.com/iain/http_accept_language.git'
+plugin 'pretty_flash', :git => 'git://github.com/rpheath/pretty_flash.git'
+plugin 'flag_shih_tzu', :git => 'git://github.com/xing/flag_shih_tzu.git'
+plugin 'title_helpers', :git => 'git://github.com/mcmire/title_helpers.git'
+plugin 'acts-as-taggable-on', :git => 'git://github.com/mbleigh/acts-as-taggable-on.git'
 
-#Install JRails
+# # Capistrano
+# capify!
+# file 'config/deploy.rb', open("#{SOURCE}/config/deploy.rb").read
+#  
+# %w( production staging ).each do |env|
+#   file "config/deploy/#{env}.rb", "set :rails_env, \"#{env}\""
+# end
+# git :add => "."
+# git :commit => "-a -m 'Added Capistrano config'"
+
+# jRails
 if yes?("Do you want to use JQuery with JRails? (yes/no)")
-  run "rm -f public/javascripts/*"
-  plugin 'JRails', :git => 'git://github.com/aaronchi/jrails.git'
+  plugin 'jrails', :svn => 'http://ennerchi.googlecode.com/svn/trunk/plugins/jrails'
+
+  # remove the installed files, we're using a newer version below
+  inside('public/javascripts') do
+    %w(
+      jquery-ui.js
+      jquery.js
+    ).each do |file|
+      run "rm -f #{file}"
+    end
+  end
+ 
+  git :add => "."
+  git :commit => "-a -m 'Added jRails plugin'"
+
+  # jQuery
+ 
+  # clean up prototype files
+  inside('public/javascripts') do
+    %w(
+      application.js
+      controls.js
+      dragdrop.js
+      effects.js
+      prototype.js
+    ).each do |file|
+      run "rm -f #{file}"
+    end
+  end
+ 
+  file 'public/javascripts/jquery.js',
+    open('http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js').read
+  file 'public/javascripts/jquery.full.js',
+    open('http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.js').read
+  file 'public/javascripts/jquery-ui.js',
+    open('http://ajax.googleapis.com/ajax/libs/jqueryui/1.5/jquery-ui.min.js').read
+  file 'public/javascripts/jquery-ui.full.js',
+    open('http://ajax.googleapis.com/ajax/libs/jqueryui/1.5/jquery-ui.js').read
+ 
+  file "public/javascripts/application.js", <<-JS
+  $(function() {
+  });
+  JS
+ 
+  git :add => "."
+  git :commit => "-a -m 'Added jQuery with UI and form plugin'"
+
 end
 
-# Clone the Authlogic-starter pack (makes a fodler with all the logic)
+
+# Clone the Authlogic-starter pack (makes a folder with all the logic)
 # git :clone => "git://github.com/LuNiPriSe/auth_logic-starter.git", :submodule => true
 
 # Install RSpec
-if yes?("Do you want to use RSpec for testing? (yes/no)")
+if yes?("Do you want to use RSpec for testing? (yes/no) Press no, if you want to use shoulda (asked later)")
   gem "rspec", :lib => false, :version => ">= 1.2.0"
   gem "rspec-rails", :lib => false, :version => ">= 1.2.0"
   generate :rspec
 end
 
+# Install shoulda
+if yes?("Do you want to use shoulda for testing? (yes/no)")
+  gem "thoughtbot-shoulda", :lib => "shoulda", :source => "http://gems.github.com"
+end
+
 # Install gems  
   if no?("Do you want to use the default mysql config path? (default= /usr/local/mysql/bin/mysql_config) (yes/no)")
     mysql_path = ask("What is your mysql config path? (default= /usr/local/mysql/bin/mysql_config)")
-    mysql_path = '--with-mysql-config=#{mysql_path}'
-    gem 'mysql', :install_options => mysql_path, :lib => 'mysql'
+    mysql_path2 = '--with-mysql-config=' + mysql_path
+    gem 'mysql', :install_options => mysql_path2, :lib => 'mysql'
   else
     gem 'mysql', :install_options => '--with-mysql-config=/usr/local/mysql/bin/mysql_config', :lib => 'mysql'
   end
@@ -669,7 +734,7 @@ end
   
 # Commit all work so far to the repository
   git :add => '.'
-  git :commit => "-a -m 'Initial commit'"
+  git :commit => "-a -m 'Last commit of the template setup'"
 
 # Success!
   puts "SUCCESS!"
