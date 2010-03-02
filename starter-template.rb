@@ -107,17 +107,36 @@ end
 # Clone the Authlogic-starter pack (makes a folder with all the logic)
 # git :clone => "git://github.com/LuNiPriSe/auth_logic-starter.git", :submodule => true
 
-# Install RSpec
-if yes?("Do you want to use RSpec for testing? (yes/no) Press no, if you want to use shoulda (asked later)")
-  gem "rspec", :lib => false, :version => ">= 1.2.0"
-  gem "rspec-rails", :lib => false, :version => ">= 1.2.0"
-  generate :rspec
-end
+
 
 # Install shoulda
-if yes?("Do you want to use shoulda for testing? (yes/no)")
+if yes?("Do you want to use shoulda, factory girl, HAML, blueprint and the shoulda_generators? (yes/no)")
   gem "thoughtbot-shoulda", :lib => "shoulda", :source => "http://gems.github.com"
+  gem "factory_girl", :source => "http://gemcutter.org"
+  # HAML with plugin (normally haml --rails <your project>)
+  gem "haml", :source => "http://gemcutter.org"
+  file 'vendor/plugins/haml/init.rb', <<-END
+  require 'rubygems'
+  begin
+  require File.join(File.dirname(__FILE__), 'lib', 'haml') # From here
+  rescue LoadError
+  require 'haml' # From gem
+  end
+
+  # Load Haml and Sass
+  Haml.init_rails(binding)
+  END
+  
+  plugin 'factory_girl_on_rails', :git => "git://github.com/technicalpickles/factory_girl_on_rails.git"
+  gem "martijn-shoulda_generator", :lib => "shoulda_generator", :source => "http://gems.github.com"
 end
+
+# Install RSpec
+# if yes?("Do you want to use RSpec for testing? (yes/no) Press no, if you want to use shoulda (asked later)")
+#   gem "rspec", :lib => false, :version => ">= 1.2.0"
+#   gem "rspec-rails", :lib => false, :version => ">= 1.2.0"
+#   generate :rspec
+# end
 
 # Install gems  
   if no?("Do you want to use the default mysql config path? (default= /usr/local/mysql/bin/mysql_config) (yes/no)")
