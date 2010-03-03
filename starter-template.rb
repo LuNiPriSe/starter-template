@@ -128,7 +128,7 @@ if yes?("Do you want to use shoulda, factory girl, HAML, blueprint and the shoul
   END
   
   plugin 'factory_girl_on_rails', :git => "git://github.com/technicalpickles/factory_girl_on_rails.git"
-  gem "martijn-shoulda_generator", :lib => "shoulda_generator", :source => "http://gems.github.com"
+  gem "martijn-shoulda_generator", :source => "http://gems.github.com", :lib => false
 end
 
 # Install RSpec
