@@ -550,8 +550,13 @@ end
   %q{de: 
         login: "Benutzername"
         email: "Email"
-        edit: "Ändern"
+        new; neues
+        show: "zeigen"
+        create: "erstellen"
+        edit: "ändern"
+        destroy: "löschen"
         update: "aktualisieren"
+        back: "zurück"
         update and login: "Passwort ändern und mich einloggen"
         password: "Passwort"
         change password: "Passwort ändern"
@@ -579,6 +584,11 @@ end
         require loggout: "Sie müssen ausgeloggt sein, um diese Seite nutzen zu können"
         login suc: "Erfolgreich eingeloggt!"
         logout suc: "Erfolgreich ausgeloggt!"
+        sure destroy: :Sind Sie sicher, dass SIe das löschen wollen?
+
+        Listing: "Übersicht"
+        New: "Neuer Eintrag"
+        Editing: "Eintrag ändern"
 
         activerecord: 
           attributes:
