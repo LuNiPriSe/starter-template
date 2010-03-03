@@ -104,30 +104,27 @@ if yes?("Do you want to use JQuery with JRails? (yes/no)")
 end
 
 
-# Clone the Authlogic-starter pack (makes a folder with all the logic)
-# git :clone => "git://github.com/LuNiPriSe/auth_logic-starter.git", :submodule => true
+# install factory gril and HAML
+gem "factory_girl", :source => "http://gemcutter.org"
+# HAML with plugin (normally haml --rails <your project>)
+gem "haml", :source => "http://gemcutter.org"
+file 'vendor/plugins/haml/init.rb', <<-END
+require 'rubygems'
+begin
+require File.join(File.dirname(__FILE__), 'lib', 'haml') # From here
+rescue LoadError
+require 'haml' # From gem
+end
 
+# Load Haml and Sass
+Haml.init_rails(binding)
+END
 
+plugin 'factory_girl_on_rails', :git => "git://github.com/technicalpickles/factory_girl_on_rails.git"
 
 # Install shoulda
 if yes?("Do you want to use shoulda, factory girl, HAML, blueprint and the shoulda_generators? (yes/no)")
   gem "thoughtbot-shoulda", :lib => "shoulda", :source => "http://gems.github.com"
-  gem "factory_girl", :source => "http://gemcutter.org"
-  # HAML with plugin (normally haml --rails <your project>)
-  gem "haml", :source => "http://gemcutter.org"
-  file 'vendor/plugins/haml/init.rb', <<-END
-  require 'rubygems'
-  begin
-  require File.join(File.dirname(__FILE__), 'lib', 'haml') # From here
-  rescue LoadError
-  require 'haml' # From gem
-  end
-
-  # Load Haml and Sass
-  Haml.init_rails(binding)
-  END
-  
-  plugin 'factory_girl_on_rails', :git => "git://github.com/technicalpickles/factory_girl_on_rails.git"
   gem "martijn-shoulda_generator", :source => "http://gems.github.com", :lib => false
 end
 
@@ -446,42 +443,36 @@ end
     <br />
   }
   
-  file 'app/views/layouts/application.html.erb',
-  %q{<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  file 'app/views/layouts/application.haml',
+  %q{!!! Transitional
+%html
+	%head
+		%title= "#{controller.controller_name}: #{controller.action_name}"
+		= stylesheet_link_tag 'blueprint/screen', :media => 'screen'
+		= stylesheet_link_tag 'blueprint/print', :media => 'print'
+		= "<!--[if IE]>#{stylesheet_link_tag 'blueprint/ie', :media => 'screen'}<![endif]-->"
+		= javascript_include_tag :defaults
+	%body
+		.container
+			%h1 Authlogic Example App
+			= pluralize User.logged_in.count, "user" 
+			currently logged in
+			%br
+				<!-- This based on last_request_at, if they were active < 10 minutes they are logged in -->
+			%br
+			%br
+			= yield
 
-    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-    <head>
-      <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-      <title><%= controller.controller_name %>: <%= controller.action_name %></title>
-      <%= stylesheet_link_tag 'scaffold' %>
-      <%= stylesheet_link_tag('flash') %>
-      <%= javascript_include_tag :defaults %>
-    </head>
-    <body>
-
-    <span style="float: right; text-align: right;"><%= link_to "Source code", "http://github.com/binarylogic/authlogic_example" %> | <%= link_to "Setup tutorial", "http://www.binarylogic.com/2008/11/3/tutorial-authlogic-basic-setup" %> | <%= link_to "Password reset tutorial", "http://www.binarylogic.com/2008/11/16/tutorial-reset-passwords-with-authlogic" %><br />
-    <%= link_to "OpenID tutorial", "http://www.binarylogic.com/2008/11/21/tutorial-using-openid-with-authlogic" %> | <%= link_to "Authlogic Repo", "http://github.com/binarylogic/authlogic" %> | <%= link_to "Authlogic Doc", "http://authlogic.rubyforge.org/" %></span>
-    <h1>Authlogic Example App</h1>
-    <%= pluralize User.logged_in.count, "user" %> currently logged in<br /> <!-- This based on last_request_at, if they were active < 10 minutes they are logged in -->
-    <br />
-    <br />
-
-
-    <% if !current_user %>
-      <%= link_to t("register"), new_account_path %> |
-      <%= link_to t("log in"), new_user_session_path %> 
-    <% else %>
-      <%= link_to t("my account"), account_path %> |
-      <%= link_to t("logout"), user_session_path, :method => :delete, :confirm => t("logout sure") %>
-    <% end %>
-
-    <p><%= display_flash_messages %></p>
-
-    <%= yield  %>
-
-    </body>
-    </html>
+			- if !current_user
+				= link_to t("register"), new_account_path
+				|
+				= link_to t("log in"), new_user_session_path
+				- else
+				= link_to t("my account"), account_path
+				|
+				= link_to t("logout"), user_session_path, :method => :delete, :confirm => t("logout sure")
+				%p
+					= display_flash_messages
   }
   
   file 'db/migrate/20081103171327_create_users.rb',
@@ -757,3 +748,4 @@ end
 
 # Success!
   puts "SUCCESS!"
+  puts "Try your first page with script/generate shoulda_scaffold <name> <attributes> (then blueprint is installed!)"
