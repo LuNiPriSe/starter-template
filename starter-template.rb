@@ -123,9 +123,9 @@ END
 plugin 'factory_girl_on_rails', :git => "git://github.com/technicalpickles/factory_girl_on_rails.git"
 
 # Install shoulda
-if yes?("Do you want to use shoulda, factory girl, HAML, blueprint and the shoulda_generators? (yes/no)")
+if yes?("Do you want to use shoulda and the shoulda_generators? (yes/no)")
   gem "thoughtbot-shoulda", :lib => "shoulda", :source => "http://gems.github.com"
-  gem "martijn-shoulda_generator", :source => "http://gems.github.com", :lib => false
+  gem "i18n_shoulda_generator", :source => "http://gemcutter.org", :lib => false
 end
 
 # Install RSpec
@@ -550,12 +550,14 @@ end
   %q{de: 
         login: "Benutzername"
         email: "Email"
-        new; neues
+        new: neues
         show: "zeigen"
-        create: "erstellen"
+        create: "anlegen"
         edit: "ändern"
         destroy: "löschen"
         update: "aktualisieren"
+        succesful_create: "wurde erfolgreich angelegt."
+        succesful_update: "wurde erfolgreich geändert."
         back: "zurück"
         update and login: "Passwort ändern und mich einloggen"
         password: "Passwort"
@@ -584,7 +586,7 @@ end
         require loggout: "Sie müssen ausgeloggt sein, um diese Seite nutzen zu können"
         login suc: "Erfolgreich eingeloggt!"
         logout suc: "Erfolgreich ausgeloggt!"
-        sure destroy: :Sind Sie sicher, dass SIe das löschen wollen?
+        sure destroy: "Sind Sie sicher, dass SIe das löschen wollen?"
 
         Listing: "Übersicht"
         New: "Neuer Eintrag"

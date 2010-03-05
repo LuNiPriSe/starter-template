@@ -6,7 +6,7 @@ First try to create a BORT like template but with the following changes:
 	- factory_girl_on_rails
 	- HAML
 	- Blueprint (CSS Framework)
-	- shoulda_generator (with HAML templates)
+	- i18n_shoulda_generator (with HAML templates)
 - optional Session storage in database
 - mysql gem installation
 -	database name changed in database.yml
