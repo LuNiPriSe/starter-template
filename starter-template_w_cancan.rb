@@ -125,7 +125,7 @@ plugin 'factory_girl_on_rails', :git => "git://github.com/technicalpickles/facto
 # Install shoulda
 if yes?("Do you want to use shoulda and the shoulda_generators? (yes/no)")
   gem "thoughtbot-shoulda", :lib => "shoulda", :source => "http://gems.github.com"
-  gem "i18n_shoulda_generator", :source => "http://gemcutter.org", :lib => false
+  gem "starter-template_generator", :source => "http://gemcutter.org", :lib => false
 end
 
 # Install RSpec
@@ -741,7 +741,7 @@ end
 
     def initialize(user)
       user ||= User.new # guest user
-        can :write, :all
+        can :manage, :all
       # if user.role? :admin
       #   can :manage, :all
       # else
