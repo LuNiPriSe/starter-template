@@ -144,6 +144,7 @@ end
     gem 'mysql', :install_options => '--with-mysql-config=/usr/local/mysql/bin/mysql_config', :lib => 'mysql'
   end
   gem 'authlogic', :lib => false
+  gem "cancan", :source => "http://gemcutter.org"
  # gem 'ruby-openid', :lib => 'openid'
   gem 'json', :lib => false
   gem 'hpricot', :lib => false
@@ -194,6 +195,11 @@ end
         protect_from_forgery # See ActionController::RequestForgeryProtection for details
         helper_method :current_user_session, :current_user
         filter_parameter_logging :password, :password_confirmation
+
+        rescue_from CanCan::AccessDenied do |exception|
+          flash[:error] = t("access denied")
+          redirect_to root_url
+        end
 
          def set_locale
            # sets locale to de, also possible to change in config environment the default language
@@ -405,7 +411,7 @@ end
       <%=h @user.current_login_ip %>
     </p>
 
-
+    <% if can? :create, @user %>
     <%= link_to t('edit'), edit_account_path %>
   }
 
@@ -549,6 +555,7 @@ end
   
   file 'config/locales/de.yml',
   %q{de: 
+        access denied: "Diese Seite war für Sie nicht nutzbar! Sie wurden automatisch umgeleitet."
         login: "Benutzername"
         email: "Email"
         new: neues
@@ -726,6 +733,32 @@ end
                    email: "Email"
                    password: "Passwort"
                    remember_me: "Eingeloggt bleiben"
+  }
+  
+  file 'app/models/ability.rb',
+  %q{class Ability
+    include CanCan::Ability
+
+    def initialize(user)
+      user ||= User.new # guest user
+        can :write, :all
+      # if user.role? :admin
+      #   can :manage, :all
+      # else
+      #   can :read, :all
+      #   can :create, Comment
+      #   can :update, Comment do |comment|
+      #     comment.try(:user) == user || user.role?(:moderator)
+      #   end
+      #   if user.role?(:author)
+      #     can :create, Article
+      #     can :update, Article do |article|
+      #       article.try(:user) == user
+      #     end
+      #   end
+      # end
+    end
+  end
   }
   
    generate("helper", "password_resets")
